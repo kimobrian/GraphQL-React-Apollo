@@ -2,6 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import '../style/app.scss';
 import ChannelList from './components/ChannelList/ChannelList';
+import CreateChannel from './components/CreateChannel/CreateChannel';
 import {
  ApolloClient,
  ApolloProvider,
@@ -30,6 +31,7 @@ render(
         <h3 className="center">React , GraphQL , Apollo</h3>
         <div className="row">
             <div className="col-lg-4 col-lg-offset-4">
+                <CreateChannel /><br/>
                 <ChannelList />
             </div>
         </div>
