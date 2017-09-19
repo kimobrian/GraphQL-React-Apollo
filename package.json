@@ -1,0 +1,38 @@
+{
+  "name": "React-GraphQL",
+  "version": "1.0.0",
+  "description": "React GraphQL Client Implementation.",
+  "main": "index.js",
+  "author": "O'Brian",
+  "license": "MIT",
+  "scripts": {
+    "start": "webpack-dev-server --history-api-fallback --inline --progress --port 7800"
+  },
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^6.4.1",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "copy-webpack-plugin": "^4.0.1",
+    "css-loader": "^0.28.4",
+    "eslint": "^4.6.1",
+    "extract-text-webpack-plugin": "^3.0.0",
+    "file-loader": "^0.9.0",
+    "html-webpack-plugin": "^2.30.1",
+    "node-sass": "^4.5.3",
+    "postcss-loader": "^1.3.3",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.13.2",
+    "webpack": "^3.5.5",
+    "webpack-dev-server": "^2.7.1"
+  },
+  "dependencies": {
+    "bloomer": "^0.6.2",
+    "bulma": "^0.5.3",
+    "react": "^15.6.1",
+    "react-apollo": "^1.4.15",
+    "react-dom": "^15.6.1"
+  }
+}
