@@ -13,7 +13,7 @@ const ChannelsList = ({ data: {loading, error, channels }}) => {
    }
 
    return <ul className="list-group">
-     { channels.map( ch => <li className="list-group-item"key={ch.id}>{ch.name}</li> ) }
+     { channels.map( ch => <li className={ "list-group-item " + (ch.id < 0 ? "pending" : "")} key={ch.id}>{ch.name}</li> ) }
    </ul>;
  };
 
