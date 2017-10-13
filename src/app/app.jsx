@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 import '../style/app.scss';
 import ChannelList from './components/ChannelList/ChannelList';
 import CreateChannel from './components/CreateChannel/CreateChannel';
+import { SubscriptionClient, addGraphQLSubscriptions } from 'subscriptions-transport-ws';
 import {
  ApolloClient,
  ApolloProvider,
@@ -10,17 +11,21 @@ import {
 } from 'react-apollo';
 
 const networkInterface = createNetworkInterface({
-  uri: 'http://localhost:7700/graphql',
+  uri: 'http://localhost:7900/graphql',
 });
 
-networkInterface.use([{
-  applyMiddleware(req, next) {
-    setTimeout(next, 1000);
-  },
-}]);
+const wsClient = new SubscriptionClient(`ws://localhost:7900/subscriptions`, {
+  reconnect: true
+});
+
+// Extend the network interface with the WebSocket
+const networkInterfaceWithSubscriptions = addGraphQLSubscriptions(
+  networkInterface,
+  wsClient
+);
 
 const client = new ApolloClient({
-   networkInterface,
+   networkInterface : networkInterfaceWithSubscriptions
 });
 
 let app = document.querySelector('#app');

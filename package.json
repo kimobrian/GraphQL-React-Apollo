@@ -33,6 +33,7 @@
     "bulma": "^0.5.3",
     "react": "^15.6.1",
     "react-apollo": "^1.4.15",
-    "react-dom": "^15.6.1"
+    "react-dom": "^15.6.1",
+    "subscriptions-transport-ws": "0.8.2"
   }
 }

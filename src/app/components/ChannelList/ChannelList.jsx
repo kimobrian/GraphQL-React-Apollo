@@ -4,18 +4,45 @@ import {
   graphql
 } from 'react-apollo';
 
-const ChannelsList = ({ data: {loading, error, channels }}) => {
-   if (loading) {
-     return <p>Loading ...</p>;
-   }
-   if (error) {
-     return <p>{error.message}</p>;
-   }
+ class ChannelsList extends Component {
 
-   return <ul className="list-group">
-     { channels.map( ch => <li className="list-group-item"key={ch.id}>{ch.name}</li> ) }
-   </ul>;
- };
+ componentWillMount() {
+   this.props.data.subscribeToMore({
+     document: channelSubscription,
+     updateQuery: (prev, {subscriptionData}) => {
+       if (!subscriptionData.data) {
+         return prev;
+       }
+
+       const newChannel = subscriptionData.data.channelAdded;
+       // Check to avoid duplicating messages.
+       if (!prev.channels.find((channel) => channel.name === newChannel.name)) {
+         let updatedChannels = Object.assign({}, prev, { channels :[...prev.channels, newChannel ] });
+         return updatedChannels;
+       } else {
+         return prev;
+       }
+     }
+   });
+ }
+
+  render() {
+    const { data: {loading, error, channels }, match } = this.props;
+
+    if (loading) {
+      return <p>Loading ...</p>;
+    }
+    if (error) {
+      return <p>{error.message}</p>;
+    }
+
+    return (
+        <ul className="list-group">
+            { channels.map( ch => <li className="list-group-item"key={ch.id}>{ch.name}</li> ) }
+        </ul>
+    );
+  }
+}
 
 export const channelsListQuery = gql`
    query ChannelsListQuery {
@@ -25,5 +52,14 @@ export const channelsListQuery = gql`
      }
    }
  `;
-const ChannelsListWithData = graphql(channelsListQuery, { options: { pollInterval: 5000 }})(ChannelsList);
+
+ const channelSubscription = gql`
+    subscription Channels {
+     channelAdded {
+       id
+       name
+     }
+    }
+`
+const ChannelsListWithData = graphql(channelsListQuery)(ChannelsList);
 export default ChannelsListWithData;
