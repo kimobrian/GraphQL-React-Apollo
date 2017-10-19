@@ -8,14 +8,14 @@ import {
 
  componentWillMount() {
    this.props.data.subscribeToMore({
-     document: channelSubscription,
+     document: channelSubscription,  // Use the subscription
      updateQuery: (prev, {subscriptionData}) => {
        if (!subscriptionData.data) {
          return prev;
        }
 
        const newChannel = subscriptionData.data.channelAdded;
-       // Check to avoid duplicating messages.
+       // Add check to prevent double adding of channels.
        if (!prev.channels.find((channel) => channel.name === newChannel.name)) {
          let updatedChannels = Object.assign({}, prev, { channels :[...prev.channels, newChannel ] });
          return updatedChannels;
