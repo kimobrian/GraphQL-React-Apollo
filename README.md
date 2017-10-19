@@ -9,11 +9,12 @@ Branch matching:
 |----------|:-------------:|
 | develop |  master |
 | subscriptions |    subscriptions   |
+| update | master |
 | subs-b <For subscriptions part in article> | subscriptions |
 
 Articles:
 - [Implementing GraphQL in React using Apollo](https://scotch.io/tutorials/implementing-graphql-in-react-using-apollo) - Use branch develop(default)
-- Realtime GraphQL UI Updates in React with Apollo(Yet to be published) - Use branch subscriptions for first two parts and subs-b for subscriptions part.
+- Realtime GraphQL UI Updates in React with Apollo(Yet to be published) - Use branch subscriptions for [refetch](https://scotch.io/@johnkariuki/realtime-graphql-ui-updates-in-react-with-apollo#toc-refetch) part, subscriptions for update[https://scotch.io/@johnkariuki/realtime-graphql-ui-updates-in-react-with-apollo#toc-updating-the-store] part and subs-b for subscriptions part.
 ### Setup
 
 ```
